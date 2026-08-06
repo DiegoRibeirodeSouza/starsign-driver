@@ -1,0 +1,21 @@
+---
+name: Codespell
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read  #  to fetch code (actions/checkout)
+
+jobs:
+  codespell:
+    name: Check for spelling errors
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: codespell-project/actions-codespell@master
+        with:
+          skip: ./src/tests/fuzzing/corpus,compat_*
+          ignore_words_file: .github/codespell_ignore_words.txt

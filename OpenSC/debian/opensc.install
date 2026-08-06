@@ -1,0 +1,12 @@
+debian/tmp/usr/bin/*
+debian/tmp/usr/share/bash-completion/completions
+
+debian/tmp/usr/share/man/man1/*
+debian/tmp/usr/share/man/man5/*
+debian/tmp/usr/share/doc/opensc/html/*
+debian/tmp/usr/share/doc/opensc/NEWS
+
+debian/tmp/usr/share/opensc/*.profile
+debian/tmp/usr/share/applications/org.opensc.notify.desktop
+etc/eac/cvc
+etc/opensc.conf etc/opensc

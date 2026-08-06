@@ -1,0 +1,30 @@
+package "egk-tool"
+purpose "@PACKAGE_SUMMARY@"
+
+option "reader" r
+    "Number of the reader to use. By default, the first reader with a present card is used. If the argument is an ATR, the reader with a matching card will be chosen."
+    string
+    optional
+option "verbose" v
+    "Use (several times) to be more verbose"
+    multiple
+    optional
+
+section "'Gesundheitsanwendung', Health Care Application (HCA)"
+option "pd" -
+    "Show 'Persönliche Versichertendaten' (@VDFORMAT@)"
+    flag off
+option "vd" -
+    "Show 'Allgemeine Versichertendaten' (@VDFORMAT@)"
+    flag off
+option "gvd" -
+    "Show 'Geschützte Versichertendaten' (@VDFORMAT@)"
+    flag off
+option "vsd-status" -
+    "Show 'Versichertenstammdaten-Status'"
+    flag off
+
+text "
+Report bugs to @PACKAGE_BUGREPORT@
+
+Written by Frank Morgner <frankmorgner@gmail.com>"

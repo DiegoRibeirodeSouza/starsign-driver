@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry id="goid-tool">
+	<refmeta>
+		<refentrytitle>goid-tool</refentrytitle>
+		<manvolnum>1</manvolnum>
+		<refmiscinfo class="productname">OpenSC</refmiscinfo>
+		<refmiscinfo class="manual">OpenSC Tools</refmiscinfo>
+		<refmiscinfo class="source">opensc</refmiscinfo>
+	</refmeta>
+
+	<refnamediv>
+		<refname>goid-tool</refname>
+		<refpurpose>smart card utility for GoID fingerprint card</refpurpose>
+	</refnamediv>
+
+	<refsynopsisdiv>
+		<cmdsynopsis>
+			<command>goid-tool</command>
+			<arg choice="opt"><replaceable class="option">OPTIONS</replaceable></arg>
+			<arg><replaceable class="option">mode</replaceable></arg>
+		</cmdsynopsis>
+	</refsynopsisdiv>
+
+	<refsect1>
+		<title>Description</title>
+		<para>
+			The <command>goid-tool</command> utility can be used from
+            the command line to read and write data of the
+            <ulink url="https://github.com/OpenSC/OpenSC/wiki/GoID-fingerprint-card">
+            GoID fingerprint card</ulink>.
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>Options</title>
+		<para>
+			<variablelist>
+				<varlistentry>
+					<term>
+						<option>--help</option>,
+						<option>-h</option>
+					</term>
+					<listitem><para>Print help message on screen.</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--version</option>,
+						<option>-V</option>
+					</term>
+					<listitem><para>Print the OpenSC package release version.</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--reader</option> <replaceable>string</replaceable>,
+						<option>-r</option> <replaceable>string</replaceable>
+					</term>
+					<listitem><para>
+						Specify the number of the reader to use. By default, the
+						first reader with present card is used. If
+						the argument is an ATR, the reader with a
+						matching card will be chosen.
+					</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--verbose</option>,
+						<option>-v</option>
+					</term>
+					<listitem><para>
+						Cause <command>goid-tool</command> to be
+						more verbose. Use it multiple times to be even more
+						verbose.
+					</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--verify-pin</option>,
+						<option>-p</option>
+					</term>
+					<listitem><para>
+						Verify PIN.
+					</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--verify-bio</option>,
+						<option>-b</option>
+					</term>
+					<listitem><para>
+						Verify finger print.
+					</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--verify-pin-or-bio</option>
+					</term>
+					<listitem><para>
+						Verify PIN or finger print (user's choice).
+					</para></listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>Options for SoCManager Applet</title>
+		<para>
+			<variablelist>
+				<varlistentry>
+					<term>
+						<option>--new-pin</option>
+					</term>
+					<listitem><para>Change PIN</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--new-bio</option>
+					</term>
+					<listitem><para>Use (several times) to change one or more biometric templates</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--info</option>
+					</term>
+					<listitem><para>Dump Information about the SoCManager's configuration</para></listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>Options for PAccess Applet</title>
+		<para>
+			<variablelist>
+				<varlistentry>
+					<term>
+						<option>--certificate</option> <replaceable>filename</replaceable>,
+						<option>-c</option> <replaceable>filename</replaceable>
+					</term>
+					<listitem><para>Use (several times) to pass CV certificates</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--key</option>,
+						<option>-k</option>,
+					</term>
+					<listitem><para>Private key for the CV certificate</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--print-cardid</option>
+					</term>
+					<listitem><para>Print the card ID</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--write-cardid</option> <replaceable>data</replaceable>
+					</term>
+					<listitem><para>Write the specified card ID</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--print-paccessid</option>
+					</term>
+					<listitem><para>Print the PAccess ID</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--write-paccessid</option> <replaceable>data</replaceable>
+					</term>
+					<listitem><para>Write the specified PAccess ID</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--read-dg</option> <replaceable>id</replaceable>
+					</term>
+					<listitem><para>Read the specified data group; use several times to read out multiple files</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--out-file</option> <replaceable>filename</replaceable>
+					</term>
+					<listitem><para>Write output to a file instead of printing it; use once for each use of <option>--read-dg</option></para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--write-dg</option> <replaceable>id</replaceable>
+					</term>
+					<listitem><para>Write the specified data group; use several times to write multiple files</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--in-file</option> <replaceable>filename</replaceable>
+					</term>
+					<listitem><para>Read input from a file; use once for each use of <option>--write-dg</option></para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--delete-dg</option> <replaceable>id</replaceable>
+					</term>
+					<listitem><para>Delete the specified data group; use several times to delete multiple files</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--create-dg</option> <replaceable>id</replaceable>
+					</term>
+					<listitem><para>Create the specified data group; use several times to create multiple files</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--new-size</option> <replaceable>size</replaceable>
+					</term>
+					<listitem><para>File size of newly created DGs</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--new-read-ac</option> <replaceable>condition</replaceable>
+					</term>
+					<listitem><para>Access condition for reading newly created DGs</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--new-read-ac</option> <replaceable>condition</replaceable>
+					</term>
+					<listitem><para>Access condition for reading newly created DGs</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--new-read-ac-chatbit</option> <replaceable>index</replaceable>
+					</term>
+					<listitem><para>Required access bit in certificate's CHAT for reading newly created DGs</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--new-write-ac</option> <replaceable>condition</replaceable>
+					</term>
+					<listitem><para>Access condition for writing newly created DGs</para></listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						<option>--new-write-ac-chatbit</option> <replaceable>index</replaceable>
+					</term>
+					<listitem><para>Required access bit in certificate's CHAT for writing newly created DGs</para></listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>See also</title>
+		<para>
+			<citerefentry>
+				<refentrytitle>opensc.conf</refentrytitle>
+				<manvolnum>5</manvolnum>
+			</citerefentry>
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>Authors</title>
+		<para><command>goid-tool</command> was written by
+		Frank Morgner <email>frankmorgner@gmail.com</email>.</para>
+	</refsect1>
+
+</refentry>

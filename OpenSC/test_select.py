@@ -1,0 +1,34 @@
+from smartcard.System import readers
+
+AID_PKCS15 = [0xA0, 0x00, 0x00, 0x00, 0x63, 0x50, 0x4B, 0x43, 0x53, 0x2D, 0x31, 0x35]
+
+def main():
+    r = readers()
+    if not r: return
+    conn = r[0].createConnection()
+    conn.connect()
+
+    def send(apdu):
+        r, sw1, sw2 = conn.transmit(apdu)
+        print(f"Send: {' '.join(f'{x:02X}' for x in apdu)} -> {sw1:02X} {sw2:02X}")
+        return sw1, sw2
+
+    print("--- Select AID ---")
+    send([0x01, 0xA4, 0x04, 0x00, len(AID_PKCS15)] + AID_PKCS15 + [0x00])
+
+    print("\n--- Try 3FFF from AID ---")
+    send([0x01, 0xA4, 0x02, 0x0C, 0x02, 0x3F, 0xFF])
+
+    print("\n--- Select 3F00 ---")
+    send([0x01, 0xA4, 0x00, 0x0C, 0x02, 0x3F, 0x00])
+
+    print("\n--- Try 3FFF from 3F00 ---")
+    send([0x01, 0xA4, 0x02, 0x0C, 0x02, 0x3F, 0xFF])
+
+    print("\n--- Select 5031 from 3F00 ---")
+    send([0x01, 0xA4, 0x00, 0x0C, 0x02, 0x50, 0x31])
+
+    print("\n--- Try 3FFF from 5031 ---")
+    send([0x01, 0xA4, 0x02, 0x0C, 0x02, 0x3F, 0xFF])
+
+main()

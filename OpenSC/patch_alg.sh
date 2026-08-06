@@ -1,0 +1,1 @@
+sed -i 's/unsigned long alg_flags = SC_ALGORITHM_RSA_RAW;/unsigned long alg_flags = SC_ALGORITHM_RSA_RAW | SC_ALGORITHM_RSA_PAD_PKCS1 | SC_ALGORITHM_RSA_HASH_NONE | SC_ALGORITHM_RSA_HASH_SHA1 | SC_ALGORITHM_RSA_HASH_SHA256;/g' src/libopensc/card-starsign.c

@@ -1,0 +1,4 @@
+debian/tmp/usr/lib/*/*pkcs11*.so
+debian/tmp/usr/lib/*/lib*.so.*
+debian/tmp/usr/lib/*/pkcs11/*.so
+debian/opensc-pkcs11.module /usr/share/p11-kit/modules

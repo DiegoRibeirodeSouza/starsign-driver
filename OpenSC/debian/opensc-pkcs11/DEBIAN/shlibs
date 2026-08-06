@@ -1,0 +1,2 @@
+libopensc 13 opensc-pkcs11 (>= 0.26.1)
+libsmm-local 13 opensc-pkcs11 (>= 0.26.1)

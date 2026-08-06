@@ -1,0 +1,43 @@
+name: Fedora Linux
+
+on:
+  pull_request:
+    paths:
+      - '**.c'
+      - '**.h'
+      - '**.sh'
+      - .github/workflows/fedora.yml
+      - '**.am'
+      - doc/**
+      - configure.ac
+  push:
+
+permissions:
+  contents: read  #  to fetch code (actions/checkout)
+
+jobs:
+  fedora:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: .github/setup-fedora.sh
+      - run: .github/build.sh dist
+      - name: Upload test logs
+        uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: fedora-test-logs
+          path: |
+            tests/*.log
+            src/tests/unittests/*.log
+
+  fedora-ix86:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: .github/setup-fedora.sh ix86
+      - run: .github/build.sh ix86

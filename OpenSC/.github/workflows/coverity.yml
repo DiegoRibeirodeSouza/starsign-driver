@@ -1,0 +1,28 @@
+name: Coverity CI
+
+# We only want to test master or explicitly via coverity branch
+on:
+  push:
+    branches: [master, coverity]
+
+
+permissions:
+  contents: read  #  to fetch code (actions/checkout)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HAS_COVERITY_SCAN_TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN != '' }}
+    steps:
+    - uses: actions/checkout@v7
+    - run: .github/setup-linux.sh force-install
+    - run: ./bootstrap
+    - run: ./configure  --disable-dependency-tracking --enable-piv-sm
+    - uses: vapier/coverity-scan-action@v1
+      if: ${{ env.HAS_COVERITY_SCAN_TOKEN == 'true' }}
+      with:
+        project: OpenSC%2FOpenSC
+        token: ${{ secrets.COVERITY_SCAN_TOKEN }}
+        email: 'viktor.tarasov@gmail.com'
+        command: 'make'

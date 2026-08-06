@@ -1,0 +1,200 @@
+opensc (0.26.1-2+open.a3.2) unstable; urgency=medium
+
+  * Custom build for Brazilian A3 tokens (Open-A3-Driver)
+
+ -- Diego Ribeiro <diego@localhost>  Wed, 05 Aug 2026 15:15:00 -0300
+
+opensc (0.26.1-2) unstable; urgency=medium
+
+  * Team upload
+  * pkcs11-register: allow explicitly specifying an app to configure (Closes: #1107224)
+
+ -- Bastian Germann <bage@debian.org>  Fri, 06 Jun 2025 12:10:29 +0200
+
+opensc (0.26.1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Refresh patches
+
+ -- Eric Dorland <eric@debian.org>  Sat, 22 Mar 2025 11:23:26 -0400
+
+opensc (0.26.0-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Rebase patches
+
+ -- Bastian Germann <bage@debian.org>  Mon, 23 Dec 2024 08:54:46 +0000
+
+opensc (0.25.1-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix CVE-2024-8443: Heap buffer overflow in OpenPGP driver when generating
+    key. (Closes: #1082853)
+  * Fix CVE-2024-45615: Usage of uninitialized values in libopensc and
+    pkcs15init. (Closes: #1082859)
+  * Fix CVE-2024-45616: Uninitialized values after incorrect check or usage of
+    APDU response values in libopensc. (Closes: #1082860)
+  * Fix CVE-2024-45617: Uninitialized values after incorrect or missing
+    checking return values of functions in libopensc. (Closes: #1082861)
+  * Fix CVE-2024-45618: Uninitialized values after incorrect or missing
+    checking return values of functions in pkcs15init. (Closes: #1082862)
+  * Fix CVE-2024-45619: Incorrect handling length of buffers or files in
+    libopensc. (Closes: #1082863)
+  * Fix CVE-2024-45620: Incorrect handling length of buffers or files in
+    pkcs15init. (Closes: #1082864)
+
+ -- Guilhem Moulin <guilhem@debian.org>  Sun, 22 Dec 2024 17:47:53 +0100
+
+opensc (0.25.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Build with gcc 14+ (Closes: #1075343)
+
+ -- Bastian Germann <bage@debian.org>  Thu, 29 Aug 2024 17:03:27 +0200
+
+opensc (0.25.1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+
+ -- Bastian Germann <bage@debian.org>  Wed, 03 Jul 2024 22:26:51 +0200
+
+opensc (0.25.0~rc1-1) unstable; urgency=medium
+
+  * Team upload
+  * New release with fixes for CVE-2024-1454, CVE-2023-5992 (Closes: #1064189)
+
+ -- Bastian Germann <bage@debian.org>  Sun, 18 Feb 2024 13:38:58 +0000
+
+opensc (0.24.0~rc1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release (Closes: #1055629)
+
+ -- Bastian Germann <bage@debian.org>  Fri, 10 Nov 2023 10:31:33 +0000
+
+opensc (0.23.0-2) unstable; urgency=medium
+
+  * Team upload
+  * Fix CVE-2023-4535 with two upstream patches (Closes: #1055520)
+  * Fix CVE-2023-40660 with upstream patch (Closes: #1055521)
+  * Fix CVE-2023-40661 with upstream patches (Closes: #1055522)
+
+ -- Bastian Germann <bage@debian.org>  Wed, 08 Nov 2023 01:26:46 +0100
+
+opensc (0.23.0-1) unstable; urgency=medium
+
+  * Team upload
+  * Drop -Wno-error=maybe-uninitialized (Closes: #1020526)
+  * Drop old NEWS (lintian: debian-news-entry-has-unknown-version)
+  * opensc-pkcs11: Differentiate short description
+  * Build with OpenPACE for npa-tool support
+  * Include upstream patch 0005 to fix compiler error
+  * Install /etc/eac files for npa-tool
+
+  [ Steve Langasek ]
+  * Build with -Wno-error=stringop-overflow to work around some misbehavior with -O3 (Closes: #1010461)
+
+ -- Bastian Germann <bage@debian.org>  Sun, 27 Aug 2023 23:54:04 +0200
+
+opensc (0.23.0-0.3) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix CVE-2023-2977 with upstream patch.
+
+ -- Bastian Germann <bage@debian.org>  Thu, 01 Jun 2023 22:30:18 +0200
+
+opensc (0.23.0-0.2) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * Fix rauc build (Closes: #1030434)
+
+ -- Bastian Germann <bage@debian.org>  Mon, 13 Feb 2023 17:13:20 +0100
+
+opensc (0.23.0-0.1) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * New upstream release (Closes: #1025802)
+
+ -- Bastian Germann <bage@debian.org>  Tue, 10 Jan 2023 18:00:21 +0100
+
+opensc (0.22.0-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Import patch to fix usage of pointer after realloc (Closes: #1013011)
+
+ -- Reiner Herrmann <reiner@reiner-h.de>  Sat, 15 Oct 2022 18:26:16 +0200
+
+opensc (0.22.0-2) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster
+  * Trim trailing whitespace.
+  * Set upstream metadata fields: Security-Contact.
+  * Replace invalid standards version 4.5.1.1 with valid 4.5.1.0.
+
+  [ Eric Dorland ]
+  * Ignore two warnings to build with gcc 11 and openssl 3 (Closes: 1001336)
+
+ -- Eric Dorland <eric@debian.org>  Mon, 31 Jan 2022 01:02:55 -0500
+
+opensc (0.22.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: 979726)
+  * Standards-Version to 4.5.1.1
+  * debhelper to v13
+  * Add upstream metadata file
+  * Install html docs
+  * Install NEWS file
+  * Remove opensc.docs, install via opensc.install
+  * Install pkcs11-register.desktop
+  * Add not-installed file (Closes: 987817)
+
+ -- Eric Dorland <eric@debian.org>  Tue, 17 Aug 2021 00:48:15 -0400
+
+opensc (0.21.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: 961123, 972035, 972036, 972037, 975651)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 06 Dec 2020 02:21:31 -0500
+
+opensc (0.20.0-4) unstable; urgency=medium
+
+  * Drop redundant Sections
+  * Remove non-existent files from debian/copyright
+  * Use https in copyright uri
+  * Add Rules-Requires-Root: no
+  * Build-Depends: bash-completion so the correct path is found (Closes: 953533)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 30 Aug 2020 03:10:09 -0400
+
+opensc (0.20.0-3) unstable; urgency=medium
+
+  * Fix patch to use /etc/opensc for opensc.conf (Closes: 949229)
+
+ -- Eric Dorland <eric@debian.org>  Mon, 27 Jan 2020 23:41:56 -0500
+
+opensc (0.20.0-2) unstable; urgency=medium
+
+  * Use pkgsysconfdir for opensc.conf location (Closes: 949229)
+  * Standards-Version to 4.5.0.0
+
+ -- Eric Dorland <eric@debian.org>  Sun, 26 Jan 2020 16:07:12 -0500
+
+opensc (0.20.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: 925796, 922650, 944728)
+  * Fixes CVE-2019-6502, CVE-2019-15946, CVE-2019-15945, CVE-2019-19480,
+    CVE-2019-19481, CVE-2019-19479 (Closes: 939668, 939669, 947383)
+  * Link to github wiki since internal docs are gone (Closes: 946722)
+  * Switch to debhelper-compat = 12
+  * Standards-Version to 4.4.1.2
+  * Drop --sysconfdir=/etc/opensc
+  * Add bash completion configs
+
+ -- Eric Dorland <eric@debian.org>  Fri, 03 Jan 2020 20:45:19 -0500
+
+# Older entries have been removed from this changelog.
+# To read the complete changelog use `apt changelog opensc-pkcs11`.

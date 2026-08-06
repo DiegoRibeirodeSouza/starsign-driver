@@ -1,0 +1,1 @@
+sed -i 's/sc_format_apdu(card, \&apdu, SC_APDU_CASE_3_SHORT, 0x22, 0x41, 0xB6);/sc_format_apdu(card, \&apdu, SC_APDU_CASE_3_SHORT, 0x22, 0x41, 0xB6);\n        apdu.cla = 0x00;/' src/libopensc/card-starsign.c

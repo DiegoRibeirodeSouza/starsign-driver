@@ -1,0 +1,6 @@
+etc/opensc.conf
+usr/share/doc/opensc/opensc.conf
+usr/lib/*/*.a
+usr/lib/*/*.la
+usr/lib/*/*.so
+usr/lib/*/pkgconfig/opensc-pkcs11.pc

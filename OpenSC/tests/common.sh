@@ -1,0 +1,123 @@
+#!/bin/bash
+## from OpenSC/src/tests/p11test/runtest.sh
+BUILD_PATH=${BUILD_PATH:-..}
+SOURCE_PATH=${SOURCE_PATH:-..}
+
+TOKENTYPE=$1
+
+# run valgrind with all the switches we are interested in
+if [ -n "$VALGRIND" -a -n "$LOG_COMPILER" ]; then
+    VALGRIND="$LOG_COMPILER"
+fi
+
+export SOPIN="12345678abcdefgh"
+export PIN="123456abcdef"
+PKCS11_TOOL="$VALGRIND $BUILD_PATH/src/tools/pkcs11-tool"
+
+if [ "${TOKENTYPE}" == "softhsm" ]; then
+    source "${SOURCE_PATH}/tests/init-softhsm.sh"
+elif [ "${TOKENTYPE}" == "softokn" ]; then
+    source "${SOURCE_PATH}/tests/init-softokn.sh"
+elif [ "${TOKENTYPE}" == "kryoptic" ]; then
+    source "${SOURCE_PATH}/tests/init-kryoptic.sh"
+else
+    echo "Unknown token type: $1"
+    exit 1
+fi
+
+ERRORS=0
+function assert() {
+	if [[ $1 != 0 ]]; then
+		echo "====> ERROR: $2"
+		ERRORS=1
+	fi
+}
+
+function generate_key() {
+	TYPE="$1"
+	ID="$2"
+	LABEL="$3"
+
+	echo "Generate $TYPE key (ID=$ID)"
+	# Generate key pair
+	$PKCS11_TOOL "${PRIV_ARGS[@]}" --keypairgen --key-type="$TYPE" --label="$LABEL" --id=$ID
+	if [[ "$?" -ne "0" ]]; then
+		echo "Couldn't generate $TYPE key pair"
+		return 1
+	fi
+
+	# Extract public key from the card
+	$PKCS11_TOOL "${PUB_ARGS[@]}" --read-object --id $ID --type pubkey --output-file $ID.der
+	if [[ "$?" -ne "0" ]]; then
+		echo "Couldn't read generated $TYPE public key"
+		return 1
+	fi
+
+	# convert it to more digestible PEM format
+	if [[ ${TYPE:0:3} == "RSA" ]]; then
+		openssl rsa -inform DER -outform PEM -in $ID.der -pubin > $ID.pub
+	else
+		openssl pkey -inform DER -outform PEM -in $ID.der -pubin > $ID.pub
+	fi
+	rm $ID.der
+}
+
+function card_setup() {
+	initialize_token
+
+	# Generate 2048b RSA Key pair
+	generate_key "RSA:2048" "01" "RSA2048" || return 1
+	# Generate 4096b RSA Key pair
+	generate_key "RSA:4096" "02" "RSA4096" || return 1
+	# Generate 256b ECC Key pair
+	generate_key "EC:secp256r1" "03" "ECC_auth" || return 1
+	# Generate 521b ECC Key pair
+	generate_key "EC:secp521r1" "04" "ECC521" || return 1
+
+	# Generate an HMAC:SHA256 key
+	$PKCS11_TOOL "${PRIV_ARGS[@]}" --keygen --key-type="GENERIC:64" --label="HMAC-SHA256" --id="05" --usage-sign
+	if [[ "$?" -ne "0" ]]; then
+		echo "Couldn't generate GENERIC key"
+		return 1
+	fi
+	if [ "${TOKENTYPE}" == "kryoptic" ]; then
+		# Generate Ed25519 Key pair
+		generate_key "EC:ed25519" "06" "ed25519" || return 1
+		# Generate Ed448 Key pair
+		generate_key "EC:ed448" "07" "ed448" || return 1
+		# Generate x25519 Key pair
+		generate_key "EC:x25519" "08" "x25519" || return 1
+		# Generate x448 Key pair
+		generate_key "EC:x448" "09" "x448" || return 1
+
+		# Generate ML-DSA-65 Key pair
+		generate_key "ML-DSA-65" "10" "ML-DSA-65" || return 1
+		# Generate ML-KEM-768 Key pair
+		generate_key "ML-KEM-768" "11" "ML-KEM-768" || return 1
+		# Generate SLH-DSA-SHA2-192S Key pair
+		generate_key "SLH-DSA-SHA2-192S" "12" "SLH-DSA-SHA2-192S" || return 1
+	fi
+
+	# Skip in FIPS mode -- Brainpool curves are not supported
+	if [[ -e "/etc/system-fips" ]]; then
+		return
+	fi
+	if [[ -f "/proc/sys/crypto/fips_enabled" && $(cat /proc/sys/crypto/fips_enabled) == "1" ]]; then
+		return
+	fi
+	if [[ -n "$LIBRESSL_VERSION" ]]; then
+		return
+	fi
+
+	# Generate brainpoolP256r1 Key pair
+	generate_key "EC:brainpoolP256r1" "13" "brainpoolP256r1" || echo "WARNING: brainpoolP256r1 not supported, skipping"
+	# Generate brainpoolP256t1 Key pair
+	generate_key "EC:brainpoolP256t1" "14" "brainpoolP256t1" || echo "WARNING: brainpoolP256t1 not supported, skipping"
+
+}
+
+function card_cleanup() {
+	token_cleanup
+	rm -f 0{1,2,3,4}.pub 1{3,4}.pub
+	sleep 1
+}

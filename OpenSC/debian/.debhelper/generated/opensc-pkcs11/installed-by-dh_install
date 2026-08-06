@@ -1,0 +1,11 @@
+./debian/tmp/usr/lib/x86_64-linux-gnu/onepin-opensc-pkcs11.so
+./debian/tmp/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+./debian/tmp/usr/lib/x86_64-linux-gnu/pkcs11-spy.so
+./debian/tmp/usr/lib/x86_64-linux-gnu/libopensc.so.13
+./debian/tmp/usr/lib/x86_64-linux-gnu/libopensc.so.13.0.0
+./debian/tmp/usr/lib/x86_64-linux-gnu/libsmm-local.so.13
+./debian/tmp/usr/lib/x86_64-linux-gnu/libsmm-local.so.13.0.0
+./debian/tmp/usr/lib/x86_64-linux-gnu/pkcs11/onepin-opensc-pkcs11.so
+./debian/tmp/usr/lib/x86_64-linux-gnu/pkcs11/opensc-pkcs11.so
+./debian/tmp/usr/lib/x86_64-linux-gnu/pkcs11/pkcs11-spy.so
+./debian/opensc-pkcs11.module

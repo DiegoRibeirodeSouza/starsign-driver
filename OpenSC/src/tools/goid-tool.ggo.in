@@ -1,0 +1,87 @@
+package "goid-tool"
+purpose "@PACKAGE_SUMMARY@"
+
+option "reader"         r
+    "Number of the reader to use. By default, the first reader with a present card is used. If the argument is an ATR, the reader with a matching card will be chosen."
+    string optional
+option "verbose" v
+    "Use (several times) to be more verbose"
+    multiple optional
+option "verify-pin" p
+    "Verify PIN"
+    optional
+option "verify-bio" b
+    "Verify finger print"
+    optional
+option "verify-pin-or-bio" -
+    "Verify PIN or finger print (user's choice)"
+    optional
+
+defmode "soc" modedesc="Options for SoCManager Applet"
+modeoption "new-pin" -
+    "Change PIN"
+    mode="soc" optional
+modeoption "new-bio" -
+    "Use (several times) to change one or more biometric templates"
+    mode="soc" multiple optional
+modeoption "info" -
+    "Dump Information about the SoCManager's configuration"
+    mode="soc" optional
+
+defmode "pxs" modedesc="Options for PAccess Applet"
+modeoption "certificate" c
+    "Use (several times) to pass CV certificates"
+    string mode="pxs" multiple optional dependon="key" typestr="FILENAME"
+modeoption "key" k
+    "Private key for the CV certificate"
+    string mode="pxs" optional dependon="certificate" typestr="FILENAME"
+modeoption "print-cardid" -
+    "Print the card ID"
+    mode="pxs" optional
+modeoption "write-cardid" -
+    "Write the specified card ID"
+    string mode="pxs" optional typestr="CARDID"
+modeoption "print-paccessid" -
+    "Print the PAccess ID"
+    mode="pxs" optional
+modeoption "write-paccessid" -
+    "Write the specified PAccess ID"
+    string mode="pxs" optional typestr="PACCESSID"
+modeoption "read-dg" -
+    "Read the specified data group; use several times to read out multiple files"
+    short mode="pxs" optional multiple typestr="ID"
+modeoption "out-file" -
+    "Write output to a file instead of printing it; use once for each use of `--read-dg'"
+    string mode="pxs" optional multiple typestr="FILENAME"
+modeoption "write-dg" -
+    "Write the specified data group; use several times to write multiple files"
+    short mode="pxs" optional multiple typestr="ID"
+modeoption "in-file" -
+    "Read input from a file; use once for each use of `--write-dg'"
+    string mode="pxs" optional multiple typestr="FILENAME"
+modeoption "delete-dg" -
+    "Delete the specified data group; use several times to delete multiple files"
+    short mode="pxs" optional multiple typestr="ID"
+modeoption "create-dg" -
+    "Create the specified data group; use several times to create multiple files"
+    short mode="pxs" optional multiple typestr="ID"
+modeoption "new-size" -
+    "File size of newly created DGs"
+    short mode="pxs" optional dependon="create-dg" typestr="SIZE" default="256"
+modeoption "new-read-ac" -
+    "Access condition for reading newly created DGs"
+    values="always","never","ta","sm" default="sm" mode="pxs" optional dependon="create-dg"
+modeoption "new-read-ac-chatbit" -
+    "Required access bit in certificate's CHAT for reading newly created DGs"
+    short mode="pxs" optional dependon="create-dg" multiple typestr="INDEX"
+modeoption "new-write-ac" -
+    "Access condition for writing newly created DGs"
+    values="always","never","ta","sm" default="sm" mode="pxs" optional dependon="create-dg"
+modeoption "new-write-ac-chatbit" -
+    "Required access bit in certificate's CHAT for reading newly created DGs"
+    short mode="pxs" optional dependon="create-dg" multiple typestr="INDEX"
+
+text "
+Report bugs to @PACKAGE_BUGREPORT@
+
+Written by Frank Morgner <frankmorgner@gmail.com>"

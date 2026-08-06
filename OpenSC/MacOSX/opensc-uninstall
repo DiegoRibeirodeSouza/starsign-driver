@@ -1,0 +1,55 @@
+#!/bin/bash
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root:" 1>&2
+   echo "" 1>&2
+   echo "sudo /usr/local/bin/opensc-uninstall" 1>&2
+   exit 1
+fi
+
+pluginkit -r -i org.opensc-project.mac.opensctoken.OpenSCTokenApp.OpenSCToken
+
+for f in \
+	/Library/OpenSC/bin/* \
+	/Library/OpenSC/etc/bash_completion.d/* \
+	/Library/OpenSC/share/doc/opensc \
+	/Library/OpenSC/share/man/man1/* \
+	/Library/OpenSC/share/man/man5/*
+do
+	a=/Library/OpenSC
+	b=/usr/local
+	l="${f/$a/$b}"
+	test -L "$l" && rm -f "$l"
+done
+
+# Remove pkcs11 libraries
+rm -f /usr/local/lib/opensc-pkcs11.so
+rm -f /usr/local/lib/onepin-opensc-pkcs11.so
+
+# Remove installed files
+rm -rf /Applications/OpenSCTokenApp.app
+rm -rf "/Applications/OpenSC Notify.app"
+rm -rf /Applications/Utilities/OpenSCTokenApp.app
+rm -rf "/Applications/Utilities/OpenSC Notify.app"
+rm -rf /Library/OpenSC
+rm -rf /Library/Security/tokend/OpenSC.tokend
+rm -f  /Library/LaunchAgents/org.opensc-project.mac.pkcs11-register.plist
+rm -f  /Library/LaunchAgents/org.opensc-project.mac.opensc-notify.plist
+rm -rf /System/Library/Security/tokend/OpenSC.tokend
+
+# Remove LaunchAgents
+for label in \
+  org.opensc-project.mac.pkcs11-register \
+  org.opensc-project.mac.opensc-notify
+do
+  launchctl asuser "$(id -u "${SUDO_USER:-$USER}")" launchctl remove "$label"
+done
+
+# delete receipts on 10.6+
+pkgutil --forget org.opensc-project.mac             > /dev/null 2>/dev/null
+pkgutil --forget org.opensc-project.tokend          > /dev/null 2>/dev/null
+pkgutil --forget org.opensc-project.mac.opensctoken > /dev/null 2>/dev/null
+pkgutil --forget org.opensc-project.startup         > /dev/null 2>/dev/null
+
+# remove this script
+rm -f /usr/local/bin/opensc-uninstall
+echo "OpenSC has been removed from your system. See you again!"

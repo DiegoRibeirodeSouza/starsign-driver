@@ -1,0 +1,920 @@
+opensc (0.26.1-2+open.a3.2) unstable; urgency=medium
+
+  * Custom build for Brazilian A3 tokens (Open-A3-Driver)
+
+ -- Diego Ribeiro <diego@localhost>  Wed, 05 Aug 2026 15:15:00 -0300
+
+opensc (0.26.1-2) unstable; urgency=medium
+
+  * Team upload
+  * pkcs11-register: allow explicitly specifying an app to configure (Closes: #1107224)
+
+ -- Bastian Germann <bage@debian.org>  Fri, 06 Jun 2025 12:10:29 +0200
+
+opensc (0.26.1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Refresh patches
+
+ -- Eric Dorland <eric@debian.org>  Sat, 22 Mar 2025 11:23:26 -0400
+
+opensc (0.26.0-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Rebase patches
+
+ -- Bastian Germann <bage@debian.org>  Mon, 23 Dec 2024 08:54:46 +0000
+
+opensc (0.25.1-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix CVE-2024-8443: Heap buffer overflow in OpenPGP driver when generating
+    key. (Closes: #1082853)
+  * Fix CVE-2024-45615: Usage of uninitialized values in libopensc and
+    pkcs15init. (Closes: #1082859)
+  * Fix CVE-2024-45616: Uninitialized values after incorrect check or usage of
+    APDU response values in libopensc. (Closes: #1082860)
+  * Fix CVE-2024-45617: Uninitialized values after incorrect or missing
+    checking return values of functions in libopensc. (Closes: #1082861)
+  * Fix CVE-2024-45618: Uninitialized values after incorrect or missing
+    checking return values of functions in pkcs15init. (Closes: #1082862)
+  * Fix CVE-2024-45619: Incorrect handling length of buffers or files in
+    libopensc. (Closes: #1082863)
+  * Fix CVE-2024-45620: Incorrect handling length of buffers or files in
+    pkcs15init. (Closes: #1082864)
+
+ -- Guilhem Moulin <guilhem@debian.org>  Sun, 22 Dec 2024 17:47:53 +0100
+
+opensc (0.25.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Build with gcc 14+ (Closes: #1075343)
+
+ -- Bastian Germann <bage@debian.org>  Thu, 29 Aug 2024 17:03:27 +0200
+
+opensc (0.25.1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+
+ -- Bastian Germann <bage@debian.org>  Wed, 03 Jul 2024 22:26:51 +0200
+
+opensc (0.25.0~rc1-1) unstable; urgency=medium
+
+  * Team upload
+  * New release with fixes for CVE-2024-1454, CVE-2023-5992 (Closes: #1064189)
+
+ -- Bastian Germann <bage@debian.org>  Sun, 18 Feb 2024 13:38:58 +0000
+
+opensc (0.24.0~rc1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release (Closes: #1055629)
+
+ -- Bastian Germann <bage@debian.org>  Fri, 10 Nov 2023 10:31:33 +0000
+
+opensc (0.23.0-2) unstable; urgency=medium
+
+  * Team upload
+  * Fix CVE-2023-4535 with two upstream patches (Closes: #1055520)
+  * Fix CVE-2023-40660 with upstream patch (Closes: #1055521)
+  * Fix CVE-2023-40661 with upstream patches (Closes: #1055522)
+
+ -- Bastian Germann <bage@debian.org>  Wed, 08 Nov 2023 01:26:46 +0100
+
+opensc (0.23.0-1) unstable; urgency=medium
+
+  * Team upload
+  * Drop -Wno-error=maybe-uninitialized (Closes: #1020526)
+  * Drop old NEWS (lintian: debian-news-entry-has-unknown-version)
+  * opensc-pkcs11: Differentiate short description
+  * Build with OpenPACE for npa-tool support
+  * Include upstream patch 0005 to fix compiler error
+  * Install /etc/eac files for npa-tool
+
+  [ Steve Langasek ]
+  * Build with -Wno-error=stringop-overflow to work around some misbehavior with -O3 (Closes: #1010461)
+
+ -- Bastian Germann <bage@debian.org>  Sun, 27 Aug 2023 23:54:04 +0200
+
+opensc (0.23.0-0.3) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix CVE-2023-2977 with upstream patch.
+
+ -- Bastian Germann <bage@debian.org>  Thu, 01 Jun 2023 22:30:18 +0200
+
+opensc (0.23.0-0.2) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * Fix rauc build (Closes: #1030434)
+
+ -- Bastian Germann <bage@debian.org>  Mon, 13 Feb 2023 17:13:20 +0100
+
+opensc (0.23.0-0.1) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * New upstream release (Closes: #1025802)
+
+ -- Bastian Germann <bage@debian.org>  Tue, 10 Jan 2023 18:00:21 +0100
+
+opensc (0.22.0-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Import patch to fix usage of pointer after realloc (Closes: #1013011)
+
+ -- Reiner Herrmann <reiner@reiner-h.de>  Sat, 15 Oct 2022 18:26:16 +0200
+
+opensc (0.22.0-2) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster
+  * Trim trailing whitespace.
+  * Set upstream metadata fields: Security-Contact.
+  * Replace invalid standards version 4.5.1.1 with valid 4.5.1.0.
+
+  [ Eric Dorland ]
+  * Ignore two warnings to build with gcc 11 and openssl 3 (Closes: 1001336)
+
+ -- Eric Dorland <eric@debian.org>  Mon, 31 Jan 2022 01:02:55 -0500
+
+opensc (0.22.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: 979726)
+  * Standards-Version to 4.5.1.1
+  * debhelper to v13
+  * Add upstream metadata file
+  * Install html docs
+  * Install NEWS file
+  * Remove opensc.docs, install via opensc.install
+  * Install pkcs11-register.desktop
+  * Add not-installed file (Closes: 987817)
+
+ -- Eric Dorland <eric@debian.org>  Tue, 17 Aug 2021 00:48:15 -0400
+
+opensc (0.21.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: 961123, 972035, 972036, 972037, 975651)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 06 Dec 2020 02:21:31 -0500
+
+opensc (0.20.0-4) unstable; urgency=medium
+
+  * Drop redundant Sections
+  * Remove non-existent files from debian/copyright
+  * Use https in copyright uri
+  * Add Rules-Requires-Root: no
+  * Build-Depends: bash-completion so the correct path is found (Closes: 953533)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 30 Aug 2020 03:10:09 -0400
+
+opensc (0.20.0-3) unstable; urgency=medium
+
+  * Fix patch to use /etc/opensc for opensc.conf (Closes: 949229)
+
+ -- Eric Dorland <eric@debian.org>  Mon, 27 Jan 2020 23:41:56 -0500
+
+opensc (0.20.0-2) unstable; urgency=medium
+
+  * Use pkgsysconfdir for opensc.conf location (Closes: 949229)
+  * Standards-Version to 4.5.0.0
+
+ -- Eric Dorland <eric@debian.org>  Sun, 26 Jan 2020 16:07:12 -0500
+
+opensc (0.20.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: 925796, 922650, 944728)
+  * Fixes CVE-2019-6502, CVE-2019-15946, CVE-2019-15945, CVE-2019-19480,
+    CVE-2019-19481, CVE-2019-19479 (Closes: 939668, 939669, 947383)
+  * Link to github wiki since internal docs are gone (Closes: 946722)
+  * Switch to debhelper-compat = 12
+  * Standards-Version to 4.4.1.2
+  * Drop --sysconfdir=/etc/opensc
+  * Add bash completion configs
+
+ -- Eric Dorland <eric@debian.org>  Fri, 03 Jan 2020 20:45:19 -0500
+
+opensc (0.19.0-2) unstable; urgency=medium
+
+  * Add config files docs.
+    Thanks Peter Marschall for the patch. (Closes: 910131)
+  * Add example config file.
+    Thanks Peter Marschall. (Closes: 910133)
+
+ -- Eric Dorland <eric@debian.org>  Mon, 04 Mar 2019 01:14:51 -0500
+
+opensc (0.19.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: 908363, 909444)
+  * Fix linebreak in watch file
+
+ -- Eric Dorland <eric@debian.org>  Sun, 30 Sep 2018 16:26:03 -0400
+
+opensc (0.19.0~rc1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update watch rules
+  * Standards-Version to 4.2.1.1
+
+ -- Eric Dorland <eric@debian.org>  Sun, 09 Sep 2018 00:23:09 -0400
+
+opensc (0.18.0-3) unstable; urgency=medium
+
+  * Include the opensc-notify tool
+
+ -- Eric Dorland <eric@debian.org>  Sat, 02 Jun 2018 19:46:02 -0400
+
+opensc (0.18.0-2) unstable; urgency=medium
+
+  * Install all binaries and manpages (Closes: 899236)
+  * Standards-Version to 4.1.4
+
+ -- Eric Dorland <eric@debian.org>  Tue, 22 May 2018 13:10:58 -0400
+
+opensc (0.18.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 20 May 2018 21:25:13 -0400
+
+opensc (0.17.0-3) unstable; urgency=medium
+
+  * Switch to debhelper 11
+  * Standards-Version to 4.1.3
+  * Move VCS to salsa.debian.org
+  * Install README.md file (Closes: 870292)
+
+ -- Eric Dorland <eric@debian.org>  Sat, 24 Feb 2018 21:36:07 -0500
+
+opensc (0.17.0-2) unstable; urgency=medium
+
+  * debian/control: Switch to openssl 1.1. (Closes: #828471)
+  * debian/control: Switch to priority optional.
+  * debian/control: Standards-Version to 4.1.1.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 26 Nov 2017 00:40:22 -0500
+
+opensc (0.17.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 23 Jul 2017 14:01:53 -0400
+
+opensc (0.17.0~rc2-1) UNRELEASED; urgency=medium
+
+  * New upstream release candidate.
+  * debian/control: Build depend on help2man for npa-tool.1.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 09 Jul 2017 00:10:09 -0400
+
+opensc (0.17.0~rc1-1) unstable; urgency=medium
+
+  * New upstream release candidate.
+  * debian/patches/0001-Fix-interaction-with-DNIe-UI.patch: Remove
+    upstreamed patch.
+  * debian/control: Standards-Version to 4.0.0.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 24 Jun 2017 17:03:02 -0400
+
+opensc (0.16.0-3) unstable; urgency=medium
+
+  * debian/opensc-pkcs11.install, debian/opensc-pkcs11.module: Add p11-kit
+    module file. Thanks Timo Aaltonen. (Closes: #835029)
+  * debian/patches/0001-Fix-interaction-with-DNIe-UI.patch: Add upstream
+    patch to fix interaction with DNIe UI. (Closes: #826524)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 15 Jan 2017 19:18:44 -0500
+
+opensc (0.16.0-2) unstable; urgency=medium
+
+  * debian/control: Recommend pcscd.
+  * debian/control: Switch to libssl1.0-dev since it doesn't build with 1.1.
+  * debian/compat, debian/control, debian/rules: Switch to debhelper 10.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 10 Dec 2016 19:31:29 -0500
+
+opensc (0.16.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/rules: Install README instead of README.md.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 02 Jul 2016 16:01:45 -0400
+
+opensc (0.16.0~rc2-1) unstable; urgency=medium
+
+  * New upstream release candidate.
+  * debian/rules: Install README.md instead of README. (Closes: #825577)
+  * debian/opensc.install: Add dnie-tool.1 manpage.
+  * debian/copyright: Fix up FSF address and missing Copyright field.
+
+ -- Eric Dorland <eric@debian.org>  Fri, 27 May 2016 23:18:59 -0400
+
+opensc (0.16.0~rc1-1) unstable; urgency=medium
+
+  * New upstream release candidate. (Closes: #808113, #820444)
+  * debian/rules: Pass --enable-dnie-ui. (Closes: #819399)
+  * debian/control: Standards-Version to 3.9.8.
+  * debian/control: Fix typo.
+  * debian/copyright: Fix a few issues with machine readable copyright.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 09 Apr 2016 01:17:07 -0400
+
+opensc (0.15.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/copyright: Update to DEP5 format.
+  * debian/control: Switch maintainer to
+    pkg-opensc-maint@lists.alioth.debian.org and mark myself as uploader.
+  * debian/control: Standards-Version to 3.9.6.
+  * debian/control, debian/copyright, debian/opensc-pkcs11.install,
+    debian/opensc.docs, debian/opensc.install: Run wrap-and-sort.
+  * debian/gbp.conf: Use pristine-tar.
+  * debian/patches/0001-belpic_Support_2k_cards.patch: Remove upstreamed
+    patch.
+  * debian/gbp.conf: Use upstream-vcs-tag.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 16 May 2015 19:34:20 -0400
+
+opensc (0.14.0-2) unstable; urgency=medium
+
+  * debian/patches/0001-belpic_Support_2k_cards.patch: Add patch for new
+    belpic card. (Closes: #781221)
+
+ -- Eric Dorland <eric@debian.org>  Wed, 08 Apr 2015 00:32:32 -0400
+
+opensc (0.14.0-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #746694, #731235, #746663)
+  * debian/watch: Update to new GitHub location.
+  * debian/patches/0001-pkcs15_compute_cert_length.diff,
+    debian/patches/0002-fix-for-aventra-myeid.diff: Drop upstreamed
+    patches.
+  * debian/opensc.install: Install new dnie-tool.
+  * debian/control: Fix Vcs-Git path.
+  * debian/control: Use new GitHub homepage.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 05 Jul 2014 15:34:04 -0400
+
+opensc (0.13.0-5) unstable; urgency=medium
+
+  * debian/control, debian/opensc.install, debian/opensc-pkcs11.install:
+    Move the pkcs11 modules and libraries into their own package, marked
+    Multi-Arch: same.
+  * debian/control: Switch Conflicts to Breaks for package replacement.
+  * debian/opensc-pkcs11.install: Install /usr/lib/*/pkcs11
+    symlinks. (Closes: #710489)
+  * debian/opensc-pkcs11.install: Don't install lib*.so symlinks.
+  * debian/control: Fix up Vcs-* URLs.
+  * debian/rules: Enable parallel builds.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 13 Apr 2014 18:29:52 -0400
+
+opensc (0.13.0-4) unstable; urgency=medium
+
+  * debian/control, debian/rules: Switch to dh-autoreconf. (Closes:
+    #735380)
+  * debian/patches/0001-pkcs15_compute_cert_length.diff: Fix for cert
+    length computation on EID cards. Thanks to Martin-Éric Racine and
+    apologies to Belgium for the delay. (Closes: #721588)
+  * debian/patches/0002-fix-for-aventra-myeid.diff: Fix for Aventra
+    MyEID. Thanks Hans-Christoph Steiner. (Closes: #742089)
+  * debian/control: Standards-Version to 3.9.5.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 22 Mar 2014 17:35:33 -0400
+
+opensc (0.13.0-3) unstable; urgency=low
+
+  * debian/rules: Enable secure messaging support. (Closes: #694481)
+  * debian/control, debian/rules: Use dh_autotools-dev.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 02 Jun 2013 19:18:48 -0400
+
+opensc (0.13.0-2) unstable; urgency=low
+
+  * opensc.install: Add openpgp-tool, iasecc-tool and sc-hsm-tool and
+    manpages.
+  * debian/control: Add misc:Pre-Depends substitution. (Closes: #702758)
+
+ -- Eric Dorland <eric@debian.org>  Sat, 25 May 2013 21:02:03 -0400
+
+opensc (0.13.0-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #703557, #694481)
+  * debian/control: Standards-Version to 3.9.4.
+  * debian/opensc.docs: Update the tools.html location.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 25 May 2013 04:52:07 -0400
+
+opensc (0.12.2-3) unstable; urgency=low
+
+  * debian/compat, debian/control: Upgrade to dh v9. (Closes: #656350)
+  * debian/control: Mark package as Multi-Arch: foreign.
+  * debian/opensc.install: Update /usr/lib paths for multi-arch.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 03 Jun 2012 18:21:39 -0400
+
+opensc (0.12.2-2) unstable; urgency=low
+
+  * debian/opensc.install: Add westcos-tool & its man page. Thanks Peter
+    Marschall <peter@adpm.de>. (Closes: #629229)
+  * debian/opensc.install: Install *.profile files again. Thanks Peter
+    Marschall <peter@adpm.de>. (Closes: #629231)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 11 Sep 2011 19:53:24 -0400
+
+opensc (0.12.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Acknowledge NMU. (Closes: #622436, #629227, #631618)
+  * debian/rules, debian/opensc.install: Only install the .so.* lib files,
+    not the .la or .a files. (Closes: #633656)
+  * debian/rules, debian/control: Enable zlib support. Thanks Peter
+    Marschall <peter@adpm.de>. (Closes: #629230)
+  * debian/rules, debian/control: Enable readline support. Thanks Peter
+    Marschall <peter@adpm.de>. (Closes: #629228)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 11 Sep 2011 19:04:02 -0400
+
+opensc (0.12.1-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Empty dependency_libs (Closes: #622436).
+  * Drop unnecessary build dependency on libxt-dev (Closes: #629227).
+
+ -- Luk Claes <luk@debian.org>  Sat, 25 Jun 2011 15:37:46 +0200
+
+opensc (0.12.1-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #627241)
+  * debian/control: Upgrade Standards-Version to 3.9.2.
+  * debian/opensc.install: rutoken-tool has been removed.
+  * debian/opensc.install: Add eidenv and piv-tool manpages.
+
+ -- Eric Dorland <eric@debian.org>  Thu, 02 Jun 2011 01:31:38 -0400
+
+opensc (0.12.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control, debian/rules, debian/mozilla-opensc.install,
+    debian/mozilla-opensc.links: Remove the mozilla-opensc package, as
+    it's no longer present.
+  * debian/control, debian/rules: Don't build with openct anymore.
+  * debian/rules: Changelog no longer in a weird place.
+  * debian/source/options, debian/source/patch-header: Remove unnecessary
+    single-debian-patch setting.
+  * debian/patches/CVE-2010-4523, debian/patches/min-max-macros,
+    debian/patches/series: Remove now unnecessary patches.
+  * debian/libopensc2-dev.docs, debian/libopensc2-dev.install,
+    debian/libopensc2.examples, debian/libopensc2.install,
+    debian/libopensc2.links, debian/libopensc2.symbols, debian/control,
+    debian/opensc.install: Remove the lib packages since they are now
+    "private".
+  * debian/control: Add xsltproc and docbook-xsl build depends for
+    documentation building.
+  * debian/rules: Remove unneedded override_dh_strip rule.
+  * debian/rules: Install into debian/tmp.
+  * debian/opensc.install: Remove no longer shipped cardos-info.
+
+ -- Eric Dorland <eric@debian.org>  Tue, 31 May 2011 03:13:29 -0400
+
+opensc (0.11.13-1.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * CVE-2010-4523: Protect against buffer overflow from rogue cards
+    (closes: #607427)
+
+ -- Jonathan Wiltshire <jmw@debian.org>  Wed, 22 Dec 2010 14:20:22 +0000
+
+opensc (0.11.13-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #570107, #505404)
+  * libtool.m4: Delete spurious libtool.m4 that was picked up somewhere.
+
+ -- Eric Dorland <eric@debian.org>  Mon, 01 Mar 2010 00:58:01 -0500
+
+opensc (0.11.12-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #563671)
+  * debian/source/format, debian/source/options,
+    debian/source/patch-header: Convert to v3 quilt format, with
+    single-debian-patch.
+  * debian/rules: Enable documentation installation.
+  * debian/control: Update description with advice from Andreas
+    Jellinghaus, with some editing. (Closes: #552516)
+  * debian/libopensc2.symbols: Update for new symbols.
+  * debian/libopensc2.shlibs: Remove in favor of the symbols file.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 10 Jan 2010 19:23:09 -0500
+
+opensc (0.11.9-2) unstable; urgency=low
+
+  * debian/libopensc2.symbols: Add symbols file.
+  * debian/compat: Use debhelper version 7.
+  * debian/control: Drop build-deps on cdbs and build-depend on debhelper
+    >= 7.0.50.
+  * debian/rules: Convert to dh instead of debhelper.
+
+ -- Eric Dorland <eric@debian.org>  Mon, 07 Sep 2009 19:00:53 -0400
+
+opensc (0.11.9-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control: Update Standards-Version to 3.8.3.
+
+ -- Eric Dorland <eric@debian.org>  Mon, 07 Sep 2009 17:38:19 -0400
+
+opensc (0.11.8-1) unstable; urgency=low
+
+  * New upstream release. Fixes a security problem with pkcs11-tool
+    generating insecure public keypairs. This problem was only with the
+    0.11.7 release, which was only part of unstable. (Closes: #527640)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 10 May 2009 22:03:06 -0400
+
+opensc (0.11.7-2) unstable; urgency=low
+
+  * debian/rules: Explicitly enable openct and pcsc. (Closes: #522077)
+  * debian/control:
+    - Update Standards-Version to 3.8.1.
+    - Add ${misc:Depends} everywhere.
+    - Move libopensc2-dbg to the debug section.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 04 Apr 2009 17:46:05 -0400
+
+opensc (0.11.7-1) unstable; urgency=low
+
+  * New upstream release. Fixes CVE-2009-0368.
+  * debian/rules:
+    - New location for the ChangeLog.
+    - Add --enable-signer to get the signer back.
+  * debian/opensc.install:
+    - cardos-tool.1 replaces cardos-info.1.
+    - Install cardos-tool and rutoken-tool.
+  * debian/opensc.docs, libopensc2-dev.docs: New html documentation location.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 29 Mar 2009 03:56:10 -0400
+
+opensc (0.11.4-5) unstable; urgency=high
+
+  * src/tools/pkcs15-tool.c: Small fix to the previous security
+    vulnerability to remove a strict check for the default card label.
+
+ -- Eric Dorland <eric@debian.org>  Fri, 29 Aug 2008 03:14:53 -0400
+
+opensc (0.11.4-4) unstable; urgency=high
+
+  * src/libopensc/card-cardos.c, src/tools/pkcs15-tool.c: Patch to fix
+    CVE-2008-2235 "OpenSC initializes CardOS cards with improper
+    access rights".
+  * debian/control: Up Standards-Version to 3.7.3.
+  * debian/opensc.NEWS: Fix typo.
+
+ -- Eric Dorland <eric@debian.org>  Thu, 31 Jul 2008 13:27:31 -0400
+
+opensc (0.11.4-3) unstable; urgency=low
+
+  * etc/opensc.conf.in: Document that lock_login is actually set to false
+    by default. Thanks Mark Proehl. (Closes: #457322)
+  * debian/mozilla-opensc.install: Don't install .a file. (Closes: #459542)
+
+ -- Eric Dorland <eric@debian.org>  Mon, 07 Jan 2008 23:54:18 -0500
+
+opensc (0.11.4-2) unstable; urgency=low
+
+  * debian/libopensc2.install: Install onepin-opensc-pkcs11 signer. Thanks
+    Laurent Bigonville. (Closes: #449219)
+  * debian/libopensc2-dev.install: Install all the .a files.
+  * debian/control: Remove XS- prefix from Vcs headers.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 04 Nov 2007 18:04:34 -0500
+
+opensc (0.11.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * src/signer/dialog.c: Remove spurious redefinition of PIN_ENTRY.
+  * debian/control: Add Hompage and XS-Vcs-* headers.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 22 Sep 2007 04:13:54 -0400
+
+opensc (0.11.3-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #424013)
+  * debian/control:
+    - Use Standards-Version 3.7.2.2.
+    - Use binary:Version instead of Source-Version.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 21 Jul 2007 01:12:13 -0400
+
+opensc (0.11.2-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #413470, #410195, #419680)
+
+ -- Eric Dorland <eric@debian.org>  Thu, 17 May 2007 00:44:04 -0400
+
+opensc (0.11.1-3) unstable; urgency=high
+
+  * src/signer/dialog.c, debian/control: Fix path to pinentry and
+    recommend pinentry for mozilla-opensc. Thanks Antti S. Lankila for the
+    suggestion. (Closes: #392241)
+  * opensc.docs: Install new and improved html docs. (Closes: #399838)
+  * mozilla-opensc.links: Install links for iceweasel and iceape rather
+    than firefox and mozilla. Considering who I am I should have picked up
+    on this sooner. (Closes: #409946)
+  * etc/opensc.conf.in: Document that lock_login is actually true by
+    default. Thanks Antti-Juhani Kaijanaho. (Closes: #410024)
+
+ -- Eric Dorland <eric@debian.org>  Sat, 10 Feb 2007 23:27:03 -0500
+
+opensc (0.11.1-2) unstable; urgency=low
+
+  * debian/libopensc2.links: Link /usr/lib/opensc/opensc-pkcs11.so to
+    /usr/lib/opensc-pkcs11.so to help with upgrades. (Closes: #363443)
+  * etc/opensc.conf.in: Fix small typo, thanks Clemens Orthacker.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 19 Aug 2006 13:25:31 -0400
+
+opensc (0.11.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 10 Jun 2006 01:22:46 -0400
+
+opensc (0.11.0-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #366313)
+  * debian/control:
+    - Fix stray 2 in the description. Thanks Ludovic Rousseau.
+      (Closes: #354744)
+    - Standards-Version to 3.7.2.0.
+    - Add libopensc2-dbg package.
+    - Upgrade debhelper dependency to >> 5, for more sane -dbg package
+      handling.
+  * debian/watch: Add watch file.
+  * man/pkcs15-tool.1: Patch from Daniel Kahn Gillmor to add --unblock-pin
+    documentation to the man page. (Closes: #350634)
+  * debian/rules: Strip into the -dbg package.
+  * debian/compat: Use debhelper level 5.
+  * debian/openct.install:
+    - There isn't anything in /usr/sbin anymore.
+    - Install new tools and their manpages.
+    - No more section 7 manpages.
+  * debian/libopensc2.shlibs: Add dependency on latest version.
+  * debian/libopensc2.install: Don't try to install non-existant .profile
+    files in /etc.
+  * debian/mozilla-opensc.install, debian/mozilla-opensc.links: Fix path
+    to signer.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 28 May 2006 18:28:03 -0400
+
+opensc (0.10.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/opensc.NEWS: Add a note about the package split.
+
+ -- Eric Dorland <eric@debian.org>  Wed, 11 Jan 2006 01:44:11 -0500
+
+opensc (0.10.0-2) unstable; urgency=low
+
+  * debian/libopensc2-dev.install: Only install lib*.so, etc, not
+    *.so. (Closes: #344591)
+
+ -- Eric Dorland <eric@debian.org>  Fri, 23 Dec 2005 18:38:46 -0500
+
+opensc (0.10.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    - Remove libpam-opensc, libscam1 and libopensc-openssl.
+    - Remove gcc-3.3, libpam and libldap build dependencies.
+    - Bump soname part of library names, and add appropriate Conflicts
+      and Replaces.
+    - Build depend on libltdl3-dev.
+    - Bump Standards-Version to 3.6.2.1.
+  * debian/libopensc-openssl.install, debian/libpam-opensc.docs,
+    debian/libpam-opensc.install, debian/libscam1.examples,
+    debian/libscam1.install, debian/libscam1.shlibs, debian/scldap.conf:
+    Remove.
+  * debian/libopensc1*: Renamed to libopensc2*.
+  * debian/libopensc2.shlibs: Remove libpkcs11, bump other version info.
+  * debian/libopensc2.install: New location for spy and pkcs11 modules.
+  * debian/libopensc2-dev.install: Use *.so, *.la and *.a instead of
+    individual listing.
+  * debian/rules:
+    - Try building with default gcc.
+    - Add new upstream changelog location.
+  * debian/copyright: UTF8ify.
+  * debian/opensc.docs: Install new tools doc.
+  * debian/libopensc2-dev.docs: New file, install api HTML doc.
+  * debian/mozilla-opensc.install: Don't install /usr/lib/mozilla.
+  * debian/mozilla-opensc.links: Install to new firefox location and make
+    a link for mozilla plugin dir.
+
+ -- Eric Dorland <eric@debian.org>  Wed, 21 Dec 2005 01:21:34 -0500
+
+opensc (0.9.6-3) unstable; urgency=medium
+
+  * debian/control, debian/rules: Use gcc-3.3 instead of default gcc-4.0
+    until #322145 can be figured out.
+
+ -- Eric Dorland <eric@debian.org>  Wed, 31 Aug 2005 01:23:34 -0400
+
+opensc (0.9.6-2) unstable; urgency=low
+
+  * The "RTFM" release.
+  * debian/opensc.install: Add manpages for pkcs11-tool and
+    cardos-info. (Closes: #289751)
+  * docs/pkcs15-init.1: Add documentation for -T switch. (Closes: #317414)
+  * debian/opensc.docs: Install HTML and XML documentation. (Closes:
+    #318312)
+
+ -- Eric Dorland <eric@debian.org>  Fri, 29 Jul 2005 17:39:31 -0400
+
+opensc (0.9.6-1) unstable; urgency=medium
+
+  * New upstream release, needs to go in with new openct.
+  * debian/control: Build-Depend on new libopenct1.
+  * debian/libopensc1.install: Install etc/opensc.conf instead of our old
+    empty version, because profile_dir must be set now.
+  * debian/opensc.conf: Delete, we don't need it anymore.
+  * debian/libopensc1.examples: Install a copy of the config file (without
+    the example suffix) as an example.
+  * debian/libopensc1.shlibs, debian/libscam1.shlibs: Update versions.
+  * debian/libscam1.examples: Remove .example suffix.
+
+ -- Eric Dorland <eric@debian.org>  Tue, 26 Apr 2005 01:16:16 -0400
+
+opensc (0.9.4-9) unstable; urgency=high
+
+  * debian/control: Remove extraneous build dependencies on libsasl,
+    and tighten X dependency. (Closes: #304975)
+  * debian/control: Remove uneccessarily tight dependency on libscam by
+    libpam-opensc.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 17 Apr 2005 00:59:57 -0400
+
+opensc (0.9.4-8) unstable; urgency=high
+
+  * Still yearning for testing.
+  * debian/libopensc1.examples, debian/libscam1.examples: Install example
+    configuration files. (Closes: #286629)
+  * debian/rules: Have config files under /etc/opensc.
+  * debian/opensc.conf, debian/scldap.conf: Added barren config files that
+    tell you to look at the examples.
+  * debian/libopensc1.install, debian/libscam1.install: Install config
+    files.
+  * src/pam/pam_support.c: Fix compile problem under gcc-4.0. Thanks
+    Andreas Jochens. (Closes: #287877)
+
+ -- Eric Dorland <eric@debian.org>  Fri, 31 Dec 2004 21:42:53 -0500
+
+opensc (0.9.4-7) unstable; urgency=high
+
+  * Urgency high because the new openct is in testing and the borked s390
+    buildd is the only thing holding it back.
+  * src/tools/pkcs11-tool.c: Apply by hand patch from Ph. Marek to fix bad
+    --help documentation. (Closes: #284605)
+  * debian/mozilla-opensc.links: Added, add link for mozilla-firefox
+    plugins.
+
+ -- Eric Dorland <eric@debian.org>  Tue,  7 Dec 2004 22:09:28 -0500
+
+opensc (0.9.4-6) unstable; urgency=medium
+
+  * The "I really need to pay more attention" release.
+  * debian/libopensc-openssl.install: Install only the engine files, not
+    the signer.
+  * debian/control: Have mozilla-opensc replace libopensc-openssl.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 27 Nov 2004 14:46:40 -0500
+
+opensc (0.9.4-5) unstable; urgency=medium
+
+  * debian/libscam1.install: Allow libopensc1-dev install libscam's .la
+    file.
+  * debian/control: Have libopensc1-dev replace older versions of libscam
+    because of the above.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 27 Nov 2004 14:25:43 -0500
+
+opensc (0.9.4-4) unstable; urgency=medium
+
+  * Target unstable. Urgency medium since I'd like to see this in testing.
+
+ -- Eric Dorland <eric@debian.org>  Thu, 25 Nov 2004 23:50:05 -0500
+
+opensc (0.9.4-3) experimental; urgency=low
+
+  * debian/control: Add mozilla-opensc package.
+  * debian/mozilla-opensc.install: Added file, install plugin files.
+  * debian/rules:
+    - Add AUTHORS file to all docs.
+    - Add DEB_SHLIBDEPS_INCLUDE so we can find our own libs.
+  * debian/libopensc1.shlibs: Add info for libpkcs11.
+  * debian/opensc.docs: Added file, install QUICKSTART doc.
+  * debian/libpam-opensc.docs: Added file, install PAM_README file.
+  * debian/libscam1.install: libscam is now a full lib, install just the
+    .so.* portions.
+  * debian/libopensc1-dev.install: Install libscam's .so and .la.
+  * debian/libscam1.shlibs: Add scam shlib.
+
+ -- Eric Dorland <eric@debian.org>  Thu, 18 Nov 2004 00:57:10 -0500
+
+opensc (0.9.4-2) experimental; urgency=low
+
+  * debian/control:
+    - Add section to source headers.
+    - Add appropriate conflicts and replaces for the library packages.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 13 Nov 2004 12:33:03 -0500
+
+opensc (0.9.4-1) experimental; urgency=low
+
+  * New upstream release. Target experimental to give freeswan guys a
+    chance. (Closes: #279968, #260828)
+  * src/libopensc/reader-pcsc.c: Resolve some conflicts from previous
+    patches, now in synch with upstream.
+  * debian/{libopensc0-dev.install, libopensc0.install, libopensc0.shlibs,
+    libscam0.install, libscam0.shlibs}: Renamed to change 0 to 1 to
+    reflect new soname.
+  * debian/control:
+    - Change package name to reflect new soname.
+    - Build-depend on pkg-config, for libs that use it.
+  * debian/*.shlibs: Bump up sonames and versions.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 13 Nov 2004 00:41:51 -0500
+
+opensc (0.8.1-7) unstable; urgency=medium
+
+  * Urgency medium since this reenables pcsclite support.
+  * {configure,configure.in}: Replace /pcsc with /PCSC for new pcsclite
+    include location.
+  * src/libopensc/reader-pcsc.c: Replace LPCSTR with LPCTSTR for new
+    libpcsclite.
+
+ -- Eric Dorland <eric@debian.org>  Tue, 20 Jul 2004 23:04:27 -0400
+
+opensc (0.8.1-6) unstable; urgency=low
+
+  * configure.in: use _pic.a instead of -pic.a, openssl changed.
+  * configure: Rebuild.
+  * debian/control:
+      - Build-depend on libssl-dev (>= 0.9.7d-3) for pic.a
+        renaming.
+      - Build-depend on libpcsclite-dev (>= 1.2.9-beta1) for new
+        libpcsclite1. (Closes: #247697)
+  * src/libopensc/reader-pcsc.c: Patch for new libpcsclite1. Thanks
+    Ludovic Rousseau.
+
+ -- Eric Dorland <eric@debian.org>  Sat, 29 May 2004 21:07:28 -0400
+
+opensc (0.8.1-5) unstable; urgency=low
+
+  * debian/control:
+    - Make libopensc* and libscam0 optional and everything
+      else extra, to allow things in optional to link to the libs. I
+      still need to resolve the dependency on libpcsc (it's in extra).
+    - Build depend on libssl-dev (>= 0.9.7d-2) for PIC libs.
+    - Make debhelper build dep >> 4.1.
+  * configure.in: Use libcrypto-pic to work around build problems on
+    architectures that need PIC libs. (Closes: #239422)
+  * configure: Rebuild.
+
+ -- Eric Dorland <eric@debian.org>  Sun, 16 May 2004 20:41:43 -0400
+
+opensc (0.8.1-4) unstable; urgency=low
+
+  * debian/control: Build-Depend on libassuan-dev that provides PIC
+    libs. (Closes: #239422)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 28 Mar 2004 22:22:53 -0500
+
+opensc (0.8.1-3) unstable; urgency=low
+
+  * debian/libpam-opensc.install: Install pam modules into /lib/security
+    rather than /usr/lib/security. (Closes: #235948)
+  * debian/control:
+    - libpam-opensc needs to depend on libscam0. (Closes: #235949)
+    - Shorten libopensc0 short description.
+  * docs/pkcs15-init.1: Add .SH NAME line.
+  * docs/pkcs15-profile.5.in: Change the .ds line to the actual name, add
+    .SH NAME line (half of #231535)
+  * docs/pkcs15.7: Other half, add .ds line, add .SH NAME line (Closes:
+    #231535)
+
+ -- Eric Dorland <eric@debian.org>  Sat,  6 Mar 2004 19:30:54 -0500
+
+opensc (0.8.1-2) unstable; urgency=low
+
+  * debian/control: Build with libopenct0-dev.
+
+ -- Eric Dorland <eric@debian.org>  Tue, 27 Jan 2004 23:34:43 -0500
+
+opensc (0.8.1-1) unstable; urgency=low
+
+  * Initial release. (Based loosely on the packaging by Joe Phillips
+    <joe.phillips@innovationsw.com>) (Closes: #157979, #187551)
+  * Relibtoolize to fix build problem.
+
+ -- Eric Dorland <eric@debian.org>  Mon, 29 Dec 2003 16:43:01 -0500
