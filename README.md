@@ -62,15 +62,20 @@ A barreira final não era o nosso driver, mas o ecossistema legado. Substituímo
 ## Instalação Segura
 
 > [!WARNING]
-> Este driver está em processo de submissão ao repositório oficial do OpenSC (upstream). Instalar sobrescrevendo a lib padrão do sistema pode quebrar o funcionamento de outros tokens não-StarSign.
+> Este driver está em processo de submissão ao repositório oficial do OpenSC (upstream). Instalar sobrescrevendo a lib padrão do sistema pode alterar o comportamento de tokens não-StarSign.
 
 **Requisitos Testados:**
 - **OS:** Debian 13 / Ubuntu 24.04
-- **OpenSC Base:** Versão atual do master do OpenSC
 - **Token:** G&D StarSign CUT S (ICP-Brasil A3)
 
-### Passo a passo (Instalação Isolada):
-Compile o OpenSC usando um prefixo customizado para não afetar o sistema global:
+### Opção 1: Instalação Fácil (Recomendado)
+Acesse a aba **Releases** no GitHub e baixe os pacotes `.deb` pré-compilados.
+```bash
+sudo apt install ./opensc*.deb
+```
+
+### Opção 2: Compilação Manual
+Se preferir compilar, use um prefixo customizado para isolar o driver:
 ```bash
 cd OpenSC
 ./bootstrap
@@ -79,10 +84,13 @@ make
 sudo make install
 ```
 
-Para usar com o PJe (recomendado usar a versão headless em vez de Java 8):
+### Como usar com o PJe (TJMG / etc)
+Devido ao bug do Java 8 com `NONEwithRSA`, **não use o PJeOffice oficial**. Em vez disso, use o excelente cliente em Go, `pje_headless`.
+Basta apontar a variável de ambiente para o nosso driver compilado (se você usou os pacotes `.deb`, a biblioteca estará em `/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so`):
+
 ```bash
 export PJE_PKCS11_MODULE=/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
-/home/diego/Documentos/starsign-driver/run_pje_headless.sh
+./pjeheadless
 ```
 
 ## Agradecimentos (Credits)
