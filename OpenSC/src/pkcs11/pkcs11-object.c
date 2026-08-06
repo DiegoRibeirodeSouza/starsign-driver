@@ -414,14 +414,14 @@ C_FindObjectsInit(CK_SESSION_HANDLE hSession,	/* the session's handle */
 			}
 		}
 
-            /* HACK: Skip public/private keys without a valid modulus to prevent Java SunPKCS11 from panicking */
+            /* HACK: Skip public keys without a valid modulus to prevent Java SunPKCS11 from panicking */
             {
                     CK_OBJECT_CLASS obj_class;
                     CK_ATTRIBUTE class_attr = { CKA_CLASS, &obj_class, sizeof(obj_class) };
-                    if (object->ops->get_attribute(session, object, &class_attr) == CKR_OK && (obj_class == CKO_PUBLIC_KEY || obj_class == CKO_PRIVATE_KEY)) {
+                    if (object->ops->get_attribute(session, object, &class_attr) == CKR_OK && (obj_class == CKO_PUBLIC_KEY)) {
                             CK_ATTRIBUTE mod_attr = { CKA_MODULUS, NULL_PTR, 0 };
                             if (object->ops->get_attribute(session, object, &mod_attr) != CKR_OK) {
-                                    sc_log(context, "HACK: Skipping key %lu because it lacks CKA_MODULUS", object->handle);
+                                    sc_log(context, "HACK: Skipping public key %lu because it lacks CKA_MODULUS", object->handle);
                                     continue;
                             }
                     }
