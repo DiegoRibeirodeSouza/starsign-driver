@@ -1,8 +1,8 @@
 # Open A3 Driver (OpenSC Native Module)
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)
 ![License](https://img.shields.io/badge/license-LGPLv2.1-green.svg)
-![Status](https://img.shields.io/badge/status-funcional%20|%20aguardando%20revis%C3%A3o%20upstream-orange.svg)
+![Status](https://img.shields.io/badge/status-funcional%20%26%20assinatura%20verificada-brightgreen.svg)
 
 Este repositório contém a pesquisa, a engenharia reversa e a implementação final de um driver nativo em C para o **OpenSC**, permitindo o uso do token criptográfico **G&D StarSign CUT S (A3)** em sistemas Linux modernos **sem a necessidade do middleware proprietário SafeSign**.
 
@@ -27,16 +27,39 @@ Nosso driver implementa a injeção exata dessa string em texto puro via comando
 ### 2. Gestão de Canais Lógicos (Logical Channels)
 O applet PKCS#15 recusa operações no canal de comunicação padrão (Canal 0). O driver envia um comando `MANAGE CHANNEL` (`70 00 00`) para abrir um novo canal lógico (Canal 1), forçando todas as APDUs subsequentes no driver a usarem a classe `CLA = 0x01`.
 
-### 3. Bypass de Seleção e a Peculiaridade do Sistema de Arquivos
-O StarSign CUT S **rejeita silenciosamente** a instrução `SELECT FILE` se a solicitação de controle FCI for feita no padrão tradicional (`P2=00`). 
-Nossa engenharia reversa descobriu empiricamente que ele só aceita `P2=0x0C` (Sem resposta FCI esperada). Sem o FCI, o OpenSC nativo enxergava todos os arquivos com `tamanho = 0`. Para resolver, sobrescrevemos a função `starsign_select_file`:
-- Forçamos `P2=0x0C`.
-- Injetamos um tamanho fictício grande (`0x8000`) na estrutura do OpenSC. O núcleo do OpenSC (`sc_read_binary`) é inteligente o suficiente para parar a leitura quando atinge o fim do arquivo real.
-- Implementamos uma correção automática para caminhos que tentavam retornar à MF (`3F00`), re-selecionando o applet correto (`5015`) para evitar falhas em referências relativas do token.
+### 3. Bypass de Seleção e Caminhos Virtuais para Certificados/Objetos de Dados
+O StarSign CUT S tem duas peculiaridades distintas no tratamento de `SELECT FILE`, ambas reconstruídas por engenharia reversa cruzando o trace de APDUs do nosso driver contra uma captura genuína do middleware proprietário SafeSign 4.7:
 
-### 4. Customização de Ambientes de Segurança (MSE) e PIN
-O driver original do ISO7816 não montava a APDU do `Manage Security Environment` (MSE) como o chip exigia. Criamos um override em `starsign_set_security_env` para injetar os bytes específicos `84 01 01 80 01 02` para operações de assinatura (`SC_SEC_OPERATION_SIGN`).
-Da mesma forma, sobrescrevemos o envio de PIN (`starsign_pin_cmd`) para forçar o parâmetro `P2=0x02` e aplicar um padding fixo de 15 bytes no buffer.
+- **IDs de arquivo multi-nível usam `P1=0x00`, não `P1=0x01`.** O cartão rejeita `P1=0x01` ("selecionar DF filho") para diretórios especiais, então `starsign_select_file` sempre seleciona pelo File ID puro.
+- **Caminhos de certificado e objetos de dados codificam um placeholder fictício `0x3FFF`** (ex.: `3F00 3FFF 4302 05A0`). O cartão responde `SW 6A82` (arquivo não encontrado) se `3FFF` for selecionado diretamente — não é um arquivo real. O componente logo depois dele (ex.: `4302`) **é** um diretório real um nível abaixo do DF da aplicação PKCS#15 (`5031`) e precisa ser selecionado uma vez; selecioná-lo de novo enquanto ele já é o atual *também* falha com `6A82`, então o driver faz cache dele (`starsign_drv_data.mid_fid`) e só reseleciona quando ele de fato muda. O componente final é então endereçado diretamente como EF filho (`P1=0x02`).
+- **O tamanho real do arquivo é lido da própria resposta FCP do cartão** (`starsign_parse_fcp_size`) em vez de um valor fixo estimado — necessário para que a checagem de limites `offset + count <= file->size` do `sc_pkcs15_read_file` não rejeite arquivos legitimamente grandes como certificados (até ~1.8 KB), continuando a funcionar para os EFs pequenos de chave/TokenInfo.
+- Uma vez que o DF da aplicação PKCS#15 (`5031`) foi selecionado, todo objeto abaixo dele (TokenInfo, EFs de ODF/AODF/PrKDF/CDF/DODF, …) é endereçado como **EF filho direto** em vez de renavegar a partir do MF a cada vez — isso preserva o contexto de "diretório de trabalho" do qual a resolução de caminhos virtuais acima depende.
+
+### 4. Customização de Ambientes de Segurança (MSE)
+O driver original do ISO7816 não montava a APDU do `Manage Security Environment` (MSE) exatamente como o chip exigia. Criamos um override em `starsign_set_security_env` para injetar os bytes específicos `84 01 01 80 01 02` para operações de assinatura (`SC_SEC_OPERATION_SIGN`).
+
+### 5. Padding da Assinatura: o cartão omite o `DigestInfo`
+As primeiras versões deste driver anunciavam `SC_ALGORITHM_RSA_HASH_SHA256` (e MD5/SHA1), dizendo ao OpenSC "me entregue o hash puro, eu mesmo monto o padding PKCS#1 v1.5 completo *e* o cabeçalho DigestInfo/OID." Decifrar uma assinatura real com a própria chave pública do token mostrou que isso **não era verdade**: o cartão faz o padding do hash cru corretamente (`00 01 FF..FF 00 <hash>`), mas nunca insere o cabeçalho ASN.1 DigestInfo que uma assinatura `SHA256-RSA-PKCS` compatível com o padrão exige — então toda assinatura produzida assim, embora aceita pelo cartão (`SW 90 00`), era criptograficamente inválida e falharia na verificação. A correção foi anunciar apenas `SC_ALGORITHM_RSA_HASH_NONE`, forçando a própria camada de criptografia do OpenSC a montar o bloco DigestInfo + PKCS#1 completo em software e entregar ao cartão um blob já com padding para uma operação RSA crua (`SC_ALGORITHM_RSA_RAW`). Verificado de ponta a ponta: PDFs assinados através do [`litisdoc`](https://github.com/DiegoRibeirodeSouza/litisdoc) (via o assinador de mecanismo raw PKCS#11 do pyHanko) agora voltam do `pdfsig` (Poppler) como `Signature Validation: Signature is Valid.`
+
+### 6. Limitação conhecida: alguns leitores CCID limitam RSA-2048 raw a 261 bytes
+
+Corrigir o item #5 acima (deixar o OpenSC montar o bloco DigestInfo em software) significa que um payload completo de 256 bytes precisa chegar ao cartão numa única operação RSA raw. Em pelo menos uma unidade StarSign CUT S testada, o leitor CCID *embutido* do token falha intermitentemente nessa transferência com `SCardTransmit failed: SCARD_E_INVALID_PARAMETER`, e o `pcscd` registra o motivo claramente:
+
+```
+CmdXfrBlockTPDU_T0() Command too long (265 bytes) for max: 261 bytes
+```
+
+Isso não é um bug do driver. O próprio descritor USB CCID do leitor (`lsusb -v`) declara um teto de mensagem **fixo no firmware**:
+
+```
+dwMaxCCIDMsgLen   271        (≈261 bytes utilizáveis após o cabeçalho CCID)
+dwFeatures        ...        apenas "Short APDU level exchange" —
+                              sem "Extended APDU level exchange"
+```
+
+Mesmo a APDU estendida mais enxuta possível carregando 256 bytes de dados (4 bytes de cabeçalho + 1 byte de marcador estendido + 2 bytes de Lc estendido + 256 bytes = 263 bytes) fica 2 bytes acima desse teto — e o encadeamento de comandos do ISO 7816-4 (command chaining), o workaround usual para payloads grandes demais, é rejeitado de cara por esse cartão (`SW 6E 00`). A única correção real — o cartão fazer hash, padding *e* inserir o DigestInfo corretamente por conta própria, de modo que só um hash de 32 bytes precise atravessar o barramento — não está disponível: ver item #5, o padding no chip não inclui o cabeçalho DigestInfo.
+
+**Efeito prático:** operações RSA-2048 raw (assinatura, decifragem) através desse leitor específico não são 100% confiáveis; podem falhar intermitentemente exatamente nesse limite de bytes e tipicamente têm sucesso ao tentar de novo. É um teto de hardware do controlador CCID, não algo corrigível em `card-starsign.c`. Ver `relatorio_testes_starsign.md` §6 para a investigação completa.
 
 ## O Desafio Final: `NONEwithRSA` e o PJe Office
 
