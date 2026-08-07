@@ -1,5 +1,5 @@
-opensc-dbgsym_0.26.1-2+open.a3.2_amd64.deb debug optional automatic=yes
-opensc-pkcs11-dbgsym_0.26.1-2+open.a3.2_amd64.deb debug optional automatic=yes
-opensc-pkcs11_0.26.1-2+open.a3.2_amd64.deb utils optional
-opensc_0.26.1-2+open.a3.2_amd64.buildinfo utils optional
-opensc_0.26.1-2+open.a3.2_amd64.deb utils optional
+opensc-dbgsym_0.26.1-2+open.a3.3_amd64.deb debug optional automatic=yes
+opensc-pkcs11-dbgsym_0.26.1-2+open.a3.3_amd64.deb debug optional automatic=yes
+opensc-pkcs11_0.26.1-2+open.a3.3_amd64.deb utils optional
+opensc_0.26.1-2+open.a3.3_amd64.buildinfo utils optional
+opensc_0.26.1-2+open.a3.3_amd64.deb utils optional

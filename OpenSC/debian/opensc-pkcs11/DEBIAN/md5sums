@@ -1,9 +1,9 @@
-d1e269db38f61b66fb55559b4f31f8e8  usr/lib/x86_64-linux-gnu/libopensc.so.13.0.0
-6dc6dd66e79a5fedd091bad93897db97  usr/lib/x86_64-linux-gnu/libsmm-local.so.13.0.0
-3cbf374aeeee0e8aead6db01ab9f59db  usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
-3a0935436891ef10f4daa53613450bc6  usr/lib/x86_64-linux-gnu/pkcs11-spy.so
+759121f2f785e1b62fc63bbe0e643d06  usr/lib/x86_64-linux-gnu/libopensc.so.13.0.0
+2707fbe557fca95f1270d04b01cd81ec  usr/lib/x86_64-linux-gnu/libsmm-local.so.13.0.0
+de3c7d412c51d3e2732ce4b65dfba4b5  usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+b304cb81d458351617b471e9cc529dc8  usr/lib/x86_64-linux-gnu/pkcs11-spy.so
 9b48ef39258bbb438a1bca659168b18d  usr/share/doc/opensc-pkcs11/NEWS.gz
 97c34476f1bd68097e91ff273c76dcab  usr/share/doc/opensc-pkcs11/README.md.gz
-fb957eff697f7061b003855910ff6dc1  usr/share/doc/opensc-pkcs11/changelog.Debian.gz
+aacf4b1dc1b258563eaa1defef53e65c  usr/share/doc/opensc-pkcs11/changelog.Debian.gz
 6eea2b1d4633989325aadeab2d327352  usr/share/doc/opensc-pkcs11/copyright
 5fe43836d2a4bb6187a4ba7fbc5e5799  usr/share/p11-kit/modules/opensc-pkcs11.module
