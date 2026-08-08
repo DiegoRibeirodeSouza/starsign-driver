@@ -1,9 +1,9 @@
 Package: opensc-pkcs11
 Source: opensc
-Version: 0.26.1-2+open.a3.3
+Version: 0.26.1-2+open.a3.4
 Architecture: amd64
 Maintainer: Debian OpenSC Maintainers <pkg-opensc-maint@lists.alioth.debian.org>
-Installed-Size: 2813
+Installed-Size: 2821
 Depends: libc6 (>= 2.38), libeac3 (>= 1.1.2+ds+git20220117+453c3d6b03a0), libglib2.0-0t64 (>= 2.40.0), libssl3t64 (>= 3.4.0), zlib1g (>= 1:1.1.4)
 Breaks: libopensc2 (<< 0.12.0)
 Replaces: libopensc2 (<< 0.12.0)

@@ -1,9 +1,9 @@
 Package: opensc
-Version: 0.26.1-2+open.a3.3
+Version: 0.26.1-2+open.a3.4
 Architecture: amd64
 Maintainer: Debian OpenSC Maintainers <pkg-opensc-maint@lists.alioth.debian.org>
 Installed-Size: 1972
-Depends: opensc-pkcs11 (= 0.26.1-2+open.a3.3), libc6 (>= 2.34), libeac3 (>= 1.1.2+ds+git20220117+453c3d6b03a0), libreadline8t64 (>= 6.0), libssl3t64 (>= 3.2.0), zlib1g (>= 1:1.1.4)
+Depends: opensc-pkcs11 (= 0.26.1-2+open.a3.4), libc6 (>= 2.34), libeac3 (>= 1.1.2+ds+git20220117+453c3d6b03a0), libreadline8t64 (>= 6.0), libssl3t64 (>= 3.2.0), zlib1g (>= 1:1.1.4)
 Recommends: pcscd
 Conflicts: mozilla-opensc
 Section: utils

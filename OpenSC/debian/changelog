@@ -1,3 +1,12 @@
+opensc (0.26.1-2+open.a3.4) UNRELEASED; urgency=medium
+
+  * Sincroniza correções de review do PR upstream (cabeçalhos de
+    licença, parsing FCP via process_fci, perfil PKCS#15 estático
+    seguindo padrão esteid2025; remove IDs derivados do nome do titular
+    do código-fonte).
+
+ -- Diego Ribeiro de Souza <souza.diegoribeirode@gmail.com>  Sat, 08 Aug 2026 15:03:48 -0300
+
 opensc (0.26.1-2+open.a3.3) unstable; urgency=medium
 
   * Fix StarSign CUT S certificate reading (3FFF virtual path navigation)
