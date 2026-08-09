@@ -13,7 +13,7 @@ O token não era reconhecido corretamente pelo OpenSC e operações que exigiam 
 * **Correção de tamanho do arquivo ODF no `card-starsign.c`:** Forçamos o tamanho do arquivo ODF para evitar erros de leitura.
 
 **Resultado Atual:**
-Sucesso total. O token é detectado, os objetos (certificados e chaves) são listados perfeitamente com `pkcs11-tool -O` e a autenticação com o PIN (`DETHklok1`) ocorre sem erros.
+Sucesso total. O token é detectado, os objetos (certificados e chaves) são listados perfeitamente com `pkcs11-tool -O` e a autenticação com o PIN ocorre sem erros.
 
 ---
 

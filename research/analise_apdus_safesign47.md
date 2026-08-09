@@ -153,18 +153,16 @@ C→T  01 A4 02 00 02 0A AA 00
 T→C  6F 07 80 02 01 16 82 01 01  (tamanho = 0x0116 = 278 bytes)
 
 C→T  01 B0 00 00 FE + 01 B0 00 FE 18
-T→C  [XML KeePass keyfile — 278 bytes total]
-     <?xml version="1.0" encoding="UTF-8"?>
-     <KeyFile>
-       <Meta><Version>2.0</Version></Meta>
-       <Key><Data Hash="D8E42E79">
-         92CB2FE5 C2EE25BB C071EE38 2028DB7C
-         9B68DB1D 54CAC5D7 0ED1E567 574DDD7E
-       </Data></Key>
-     </KeyFile>
+T→C  [XML KeePass keyfile — 278 bytes total, formato KeePass 2.x
+     <KeyFile>/<Meta>/<Key><Data Hash="..."> — conteúdo real redigido
+     deste documento por ser dado privado]
 ```
 
 > **Nota:** Chave KeePass armazenada no token como objeto de dados privado. Protegida pelo PIN.
+> O conteúdo real da chave foi removido deste documento (era um arquivo antigo/não utilizado, mas
+> segredos reais não pertencem a um repositório público de qualquer forma). O que importa para a
+> engenharia reversa é só a estrutura: o objeto existe como EF privado sob o DODF, endereçado pelo
+> mesmo esquema de path virtual `3FFF` descrito nesta seção.
 
 #### EF 1A 59 — chave de criptografia (RSA 2048 bits)
 ```
