@@ -135,6 +135,7 @@ TIDY_FILES = \
 	card-npa.c card-esteid2018.c card-idprime.c \
 	card-edo.c card-nqApplet.c card-skeid.c card-eoi.c card-dtrust.c \
 	card-lteid.c card-srbeid.c card-cedulauy.c \
+	card-starsign.c \
 	\
 	pkcs15-openpgp.c pkcs15-cardos.c pkcs15-tcos.c \
 	pkcs15-actalis.c pkcs15-atrust-acos.c pkcs15-tccardos.c \

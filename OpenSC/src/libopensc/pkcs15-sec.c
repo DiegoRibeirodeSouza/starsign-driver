@@ -623,7 +623,7 @@ int sc_pkcs15_compute_signature(struct sc_pkcs15_card *p15card,
 
 	switch (obj->type) {
 		case SC_PKCS15_TYPE_PRKEY_RSA:
-			modlen = prkey->modulus_length ? BYTES4BITS(prkey->modulus_length) : 256;
+			modlen = BYTES4BITS(prkey->modulus_length);
 			break;
 		case SC_PKCS15_TYPE_PRKEY_GOSTR3410:
 			modlen = BYTES4BITS(prkey->modulus_length) * 2;
